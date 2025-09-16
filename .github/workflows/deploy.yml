@@ -28,7 +28,7 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/pokemon-app:latest
   Deploy:
-    needs: [build-and-deploy]
+    needs: [build-and-push]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
