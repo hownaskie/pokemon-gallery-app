@@ -1,0 +1,7 @@
+name: pokemon-app
+
+services:
+  app:
+    image: honassss/pokemon-app
+    ports:
+      - "3000:80"
