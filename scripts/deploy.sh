@@ -9,7 +9,7 @@ cd /home/ubuntu/docker
 echo "***********************************"
 echo "Login to AWS ECR"
 echo "***********************************"
-aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin ec2-47-129-43-169.ap-southeast-1.compute.amazonaws.com
+aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin <account_id>.dkr.ecr.<region>.amazonaws.com
 
 echo "***********************************"
 echo "Stop the application"
