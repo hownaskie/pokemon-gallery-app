@@ -23,14 +23,6 @@ RUN npm run build
 # Stage 2: Runner stage starts from the nginx:alpine image
 FROM nginx:alpine AS runner
 
-# Install AWS CLI in runner stage
-RUN apk add --no-cache bash curl unzip \
-  && curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
-  && unzip awscliv2.zip \
-  && ./aws/install \
-  && rm -rf awscliv2.zip aws
-
-
 # Set the working directory in the container
 WORKDIR /usr/share/nginx/html
 
