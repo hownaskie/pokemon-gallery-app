@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sudo -i bash <<EOF
+
 # ------------------------------
 # Deployment Script for EC2
 # ------------------------------
@@ -16,7 +18,6 @@ if [[ -z "$DOCKER_USER" || -z "$DOCKER_PAT" || -z "$DOCKER_DIR" ]]; then
   exit 1
 fi
 
-sudo -i bash <<EOF
 echo "***********************************"
 echo "Navigate to the docker folder"
 echo "***********************************"
