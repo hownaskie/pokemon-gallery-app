@@ -39,7 +39,7 @@ RUN rm -rf ./*
 # Copy built artifacts from the builder stage
 COPY --from=builder /builder/dist /usr/share/nginx/html
 
-COPY /scripts/docker-entrypoint.sh /scripts/docker-entrypoint.sh
+COPY scripts/docker-entrypoint.sh /scripts/docker-entrypoint.sh
 RUN chmod +x /scripts/docker-entrypoint.sh
 
 # Copy nginx configuration file
@@ -49,4 +49,5 @@ COPY nginx.conf /etc/nginx/nginx.conf
 EXPOSE 80
 
 # Define the command to run the app
-ENTRYPOINT [ "nginx", "-g", "daemon off;", "/scripts/docker-entrypoint.sh" ]
+ENTRYPOINT ["/scripts/docker-entrypoint.sh"]
+CMD ["nginx", "-g", "daemon off;"]

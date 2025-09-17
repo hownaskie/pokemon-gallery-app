@@ -1,6 +1,7 @@
 import axios from "axios"
+import { RUNTIME_CONFIG } from "@/config";
 
-const BASE_URL = window.__RUNTIME_CONFIG__.POKEMON_API_URL;
+const BASE_URL = RUNTIME_CONFIG.POKEMON_API_URL;
 
 export const fetchPokemonList = async (offset: number, limit: number) => {
   const response = await axios.get(`${BASE_URL}/pokemon?offset=${offset}&limit=${limit}`)
