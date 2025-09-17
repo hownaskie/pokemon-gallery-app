@@ -5,7 +5,3 @@ services:
     image: honassss/pokemon-app
     ports:
       - "3000:80"
-    environment:
-      VITE_SUPABASE_URL: ${VITE_SUPABASE_URL}
-      VITE_SUPABASE_ANON_KEY: ${VITE_SUPABASE_ANON_KEY}
-      VITE_POKEMON_API_URL: ${VITE_POKEMON_API_URL}
