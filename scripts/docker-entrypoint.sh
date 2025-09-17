@@ -7,11 +7,6 @@ if [ -f "$SECRETS_FILE" ]; then
   export $(grep -v '^#' "$SECRETS_FILE" | xargs)
 fi
 
-# Validate required env vars
-: "${VITE_SUPABASE_URL:?VITE_SUPABASE_URL is required}"
-: "${VITE_SUPABASE_ANON_KEY:?VITE_SUPABASE_ANON_KEY is required}"
-: "${VITE_POKEMON_API_URL:?VITE_POKEMON_API_URL is required}"
-
 # Validate URL
 if ! echo "$VITE_SUPABASE_URL" | grep -Eq '^https?://'; then
   echo "ERROR: SUPABASE_URL is invalid: $VITE_SUPABASE_URL"
