@@ -48,4 +48,8 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: DOCKER_USER=${{ secrets.DOCKER_USER }} DOCKER_PAT=${{ secrets.DOCKER_PAT }} bash /home/ubuntu/scripts/deploy.sh
+          script: |
+            # Run the deployment script in bash with secrets exported
+            DOCKER_USER=${{ secrets.DOCKERHUB_USERNAME }} \
+            DOCKER_PAT=${{ secrets.DOCKERHUB_TOKEN }} \
+            bash /home/ubuntu/scripts/deploy.sh
