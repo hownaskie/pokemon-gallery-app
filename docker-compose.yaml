@@ -9,7 +9,6 @@ services:
       - "3000:80"
     secrets:
       - app_secrets
-    # Environment variables pointing to the secret file path
     environment:
       SECRETS_FILE: /run/secrets/app_secrets
 
