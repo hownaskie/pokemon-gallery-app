@@ -48,4 +48,10 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: sh /home/ubuntu/scripts/deploy.sh
+          script: |
+            # Set environment variables from GitHub secrets
+            export DOCKER_USER=${{ secrets.DOCKER_USER }}
+            export DOCKER_PAT=${{ secrets.DOCKER_PAT }}
+
+            # Run deployment script on EC2
+            sh /home/ubuntu/scripts/deploy.sh
