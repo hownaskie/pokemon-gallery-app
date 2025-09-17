@@ -28,20 +28,29 @@ echo "Logging in to Docker Hub using PAT"
 echo "***********************************"
 echo "$DOCKER_PAT" | docker login -u "$DOCKER_USER" --password-stdin
 
-echo "***********************************"
-echo "Stop the application"
-echo "***********************************"
-docker compose down
+# Pull latest image
+docker pull "$DOCKER_USER/pokemon-app:latest"
 
-echo "***********************************"
-echo "Removing all docker images"
-echo "***********************************"
-docker image prune -a -f
+# Stop existing container
+docker compose -f /home/ubuntu/docker/docker-compose.yaml down || true
 
-echo "***********************************"
-echo "Start the application"
-echo "***********************************"
-docker compose up -d
+# Start container with injected secrets
+docker compose -f /home/ubuntu/docker/docker-compose.yaml up -d
+
+# echo "***********************************"
+# echo "Stop the application"
+# echo "***********************************"
+# docker compose down
+
+# echo "***********************************"
+# echo "Removing all docker images"
+# echo "***********************************"
+# docker image prune -a -f
+
+# echo "***********************************"
+# echo "Start the application"
+# echo "***********************************"
+# docker compose up -d
 
 echo "***********************************"
 echo "Application is now running!"
