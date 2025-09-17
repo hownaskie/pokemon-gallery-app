@@ -1,15 +1,30 @@
 #!/bin/sh
 set -e
 
-# Load secrets from the single file
+# Load secrets from the single file safely
 if [ -f "$SECRETS_FILE" ]; then
   echo "Loading secrets from $SECRETS_FILE"
-  export $(grep -v '^#' "$SECRETS_FILE" | xargs)
+  while IFS='=' read -r key value; do
+    # Skip comments and empty lines
+    case "$key" in
+      ''|\#*) continue ;;
+    esac
+    export "$key=$value"
+    echo "Exported $key"
+  done < "$SECRETS_FILE"
+else
+  echo "ERROR: Secrets file $SECRETS_FILE not found!"
+  exit 1
 fi
 
-# Validate URL
+# Validate SUPABASE_URL
+if [ -z "$VITE_SUPABASE_URL" ]; then
+  echo "ERROR: VITE_SUPABASE_URL is required!"
+  exit 1
+fi
+
 if ! echo "$VITE_SUPABASE_URL" | grep -Eq '^https?://'; then
-  echo "ERROR: SUPABASE_URL is invalid: $VITE_SUPABASE_URL"
+  echo "ERROR: VITE_SUPABASE_URL is invalid: $VITE_SUPABASE_URL"
   exit 1
 fi
 
