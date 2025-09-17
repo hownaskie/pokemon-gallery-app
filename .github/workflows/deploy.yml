@@ -49,9 +49,8 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            # Set environment variables from GitHub secrets
-            export DOCKER_USER=${{ secrets.DOCKER_USER }}
-            export DOCKER_PAT=${{ secrets.DOCKER_PAT }}
-
-            # Run deployment script on EC2
-            sh /home/ubuntu/scripts/deploy.sh
+            # Run the deployment script in bash with secrets exported
+            DOCKER_USER=${{ secrets.DOCKER_USER }} \
+            DOCKER_PAT=${{ secrets.DOCKER_PAT }} \
+            DOCKER_DIR="/home/ubuntu/docker" \
+            bash /home/ubuntu/scripts/deploy.sh
