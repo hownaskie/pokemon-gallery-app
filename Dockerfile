@@ -35,14 +35,8 @@ COPY --from=builder /builder/dist /usr/share/nginx/html
 # Copy nginx configuration file
 COPY nginx.conf /etc/nginx/nginx.conf
 
-COPY scripts/docker-entrypoint.sh /scripts/docker-entrypoint.sh
-
-RUN chmod +x /scripts/docker-entrypoint.sh
-
-
 # Inform docker that the container listens on port 80
 EXPOSE 80
 
-ENTRYPOINT ["/scripts/docker-entrypoint.sh"]
 # Define the command to run the app
-CMD [ "nginx", "-g", "daemon off;" ]
+ENTRYPOINT [ "nginx", "-g", "daemon off;" ]
