@@ -30,7 +30,7 @@ WORKDIR /usr/share/nginx/html
 RUN rm -rf ./*
 
 # Copy built artifacts from the builder stage
-COPY --from=builder /builder/dist /usr/share/nginx/html
+COPY --from=builder /app/dist /usr/share/nginx/html
 
 # Copy nginx configuration file
 COPY nginx.conf /etc/nginx/nginx.conf
