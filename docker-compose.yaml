@@ -7,11 +7,3 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3000:80"
-    secrets:
-      - app_secrets
-    environment:
-      SECRETS_FILE: /run/secrets/app_secrets
-
-secrets:
-  app_secrets:
-    file: app_secrets.env
