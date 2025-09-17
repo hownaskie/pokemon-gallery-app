@@ -12,9 +12,9 @@ sudo -i bash <<EOF
 # DOCKER_DIR   -> Path to your docker-compose folder (e.g., /home/ubuntu/docker)
 
 # Check required environment variables
-if [[ -z "$DOCKER_USER" || -z "$DOCKER_PAT" || -z "$DOCKER_DIR" ]]; then
+if [[ -z "$DOCKER_USER" || -z "$DOCKER_PAT" ]]; then
   echo "Error: Missing required environment variables."
-  echo "Please set DOCKER_USER, DOCKER_PAT, and DOCKER_DIR."
+  echo "Please set DOCKER_USER, DOCKER_PAT"
   exit 1
 fi
 
