@@ -2,12 +2,11 @@ FROM node:20-alpine AS builder
 
 # Update package lists and upgrade packages to fix vulnerabilities
 # Install libc6-compat to ensure compatibility with certain npm packages
-# Install awscli for any AWS related tasks
 # Upgrade npm to the latest version
-RUN apk update && apk upgrade --no-cache python3 py3-pip bash curl unzip \
-  && python3 -m ensurepip \
-  && pip3 install --no-cache --upgrade pip awscli \
-  && npm install -g npm@latest
+RUN apk update && apk upgrade --no-cache libc6-compat && npm install -g npm@latest
+
+# Install python3 and awscli for deployment scripts
+RUN apk add --no-cache python3 py3-pip && pip3 install awscli
 
 # Set the working directory
 WORKDIR /builder
