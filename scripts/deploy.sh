@@ -35,7 +35,11 @@ docker pull "$DOCKER_USER/pokemon-app:latest"
 docker compose -f /home/ubuntu/docker/docker-compose.yaml down || true
 
 # Start container with injected secrets
-docker compose -f /home/ubuntu/docker/docker-compose.yaml up -d
+docker run -d \
+  -e VITE_SUPABASE_URL="$VITE_SUPABASE_URL" \
+  -e VITE_SUPABASE_ANON_KEY="$VITE_SUPABASE_ANON_KEY" \
+  -e VITE_POKEMON_API_URL="$VITE_POKEMON_API_URL" \
+  "$DOCKER_USER/pokemon-app:latest"
 
 # echo "***********************************"
 # echo "Stop the application"
