@@ -12,7 +12,7 @@ WORKDIR /builder
 COPY package.json package-lock.json ./
 
 # Install dependencies as per lock file without making updates
-RUN npm install --frozen-lockfile
+RUN npm ci
 
 # Copy the rest of the application code to the working directory
 COPY . .
